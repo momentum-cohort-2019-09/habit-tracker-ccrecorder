@@ -26,9 +26,10 @@ class History(models.Model):
   goal = models.ForeignKey(to="Goal", related_name="goal", on_delete=models.CASCADE)
   daily_input = models.IntegerField()
   day = models.DateField()
-  
-  def get_numeric_goal(self):
-    target = self.goal.numeric_goal
-    return target
-
+  target = models.IntegerField()
+    
+  def save(self, *args, **kwargs):
+    if self.target is None:
+      self.target = self.goal.numeric_goal
+      super().save(*args, **kwargs)
 
