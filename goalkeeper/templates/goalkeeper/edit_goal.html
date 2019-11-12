@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<nav class="nav-bar">
+  <a class="logo" href="/">GoalKeeper!</a>
+</nav>
+<p class="edit-title">Edit Your Current Goal:</p>
+<p class="goal-title">I want to {{ goal.name }} {{ goal.operator }} {{ goal.numeric_goal }}
+  {% if goal.units %} {{ goal.units }} {% endif %} per day.
+</p>
+<form class="edit-form" method="POST">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button class="save-edit-button" type="submit">Save Edits</button>
+</form>
+{% endblock %}

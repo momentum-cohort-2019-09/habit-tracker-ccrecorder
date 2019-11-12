@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<nav class="nav-bar">
+  <a class="logo" href="/">GoalKeeper!</a>
+</nav>
+<p class="create-title">Create a new goal, like this!</p>
+<p class="example-goal">I want to <u>name</u> <u>operator</u> <u>numeric goal</u> <u>units</u> per
+  day.
+  <p class="example-2-goal"> <i>I.e.,
+      " I want to eat vegetables at least 2 times per day."</i> </p>
+  <form class="create-form" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="create-button" type="submit">Submit</button>
+  </form>
+  {% endblock %}

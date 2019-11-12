@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<nav class="nav-bar">
+  <a class="logo" href="/">GoalKeeper!</a>
+  <a class="edit-button" href="{% url 'edit-goal' pk=goal.pk %}">Edit Your Goal</a>
+</nav>
+<div class="goal-wrapper">
+  <p class="goal-title">I want to {{ goal.name }} {{ goal.operator }} {{ goal.numeric_goal }}
+    {% if goal.units %} {{ goal.units }} {% endif %} per day.
+  </p>
+  <p class="daily-input-label">
+    Update your progress here:
+  </p>
+  <form class="daily-input-form" method="POST">
+    {% csrf_token %}
+    {{ form.as_p}}
+    <button class="history-button" type="submit">Save Entry</button>
+  </form>
+  {% for history in historys %}
+  <p class="historys">{{ history }}</p>
+  {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<nav class="nav-bar">
+  <a class="logo" href="/">GoalKeeper!</a>
+  <a class="create-button" href="{% url 'create-goal' %}">Create a New Goal</a>
+</nav>
+<div class="goals-container">
+  {% for goal in user.goals.all %}
+  <div class="goal-container">
+    <a class="goal-name" href="{% url 'display-goal' pk=goal.pk %}">{{ goal.name }}</a>
+  </div>
+  {% endfor %}
+</div>
+
+
+
+
+
+{% endblock %}
